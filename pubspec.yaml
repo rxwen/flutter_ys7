@@ -2,7 +2,7 @@ name: flutter_ys7
 description: A new Flutter project.
 version: 0.0.1
 author: czw
-homepage:
+homepage: https://gitee.com/isCZW/flutter_ys7
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
