@@ -1,0 +1,29 @@
+PODS:
+  - EZOpenSDK (4.8.6)
+  - Flutter (1.0.0)
+  - flutter_ys7 (0.0.1):
+    - EZOpenSDK
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - flutter_ys7 (from `.symlinks/plugins/flutter_ys7/ios`)
+
+SPEC REPOS:
+  trunk:
+    - EZOpenSDK
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  flutter_ys7:
+    :path: ".symlinks/plugins/flutter_ys7/ios"
+
+SPEC CHECKSUMS:
+  EZOpenSDK: 53b5b0936da53dc006c3e313e119a85268223d9d
+  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
+  flutter_ys7: 39646896ff0de837f80b69937bd1e215d41a9034
+
+PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+
+COCOAPODS: 1.10.2
