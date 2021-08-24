@@ -3,20 +3,19 @@ import 'dart:async';
 import 'package:flutter/services.dart';
 
 class FlutterYs7 {
-  static const MethodChannel _channel = const MethodChannel('flutter_ys7');
 
-  static Future<String> get platformVersion async {
-    final String version = await _channel.invokeMethod('getPlatformVersion');
-    return version;
-  }
+  static const _channel = const MethodChannel("cspy/flutter_ys7");
 
-  static const platform1 = const MethodChannel("cspy/flutter_ys7");
+  // static Future<String> get platformVersion async {
+  //   final String version = await _channel.invokeMethod('getPlatformVersion');
+  //   return version;
+  // }
 
   static Future<bool> startVideo4(String token, String deviceSerial,
       String verifyCode, int cameraNO) async {
     //  *  @param deviceSerial 设备序列号
     //  *  @param cameraNo     通道号
-    var result = await platform1.invokeMethod("start", {
+    var result = await _channel.invokeMethod("start", {
       'token': token,
       'deviceSerial': deviceSerial,
       'cameraNo': cameraNO,
@@ -47,4 +46,13 @@ class FlutterYs7 {
   ) async {
     return await startVideo4(token, deviceSerial, null, 1);
   }
+
+  static Future<bool> initSdk(String appKey) async {
+    // EZOpenSDK.initLib(withAppKey: "c98f55869e7e486fa9154e421ae4959d")
+    var result = await _channel.invokeMethod("init_sdk", {
+      'appKey': appKey,
+    });
+    return true;
+  }
+
 }

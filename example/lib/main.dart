@@ -10,6 +10,8 @@ class MyButton extends StatelessWidget {
     return GestureDetector(
       onTap: () async {
 
+        // sdk只需要初始化一次
+        await FlutterYs7.initSdk("appkey");
 
         print('MyButton was tapped!');
 

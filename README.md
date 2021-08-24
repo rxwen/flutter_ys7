@@ -5,7 +5,7 @@ flutter 萤石云直播插件
 
 | 功能  | android | ios    |
 | -------- | ------- | ------ |
-| 直播功能 | 开发中    | ✔️      |
+| 直播功能 | ✔️     | ✔️      |
 | 云台控制 | 开发中  | 开发中 |
 | 回放 | 开发中 | 开发中 |
 
@@ -50,7 +50,7 @@ flutter 萤石云直播插件
 
 #### android
 
-在 AndroidMainfest.xml 文件中添加：
+在 AndroidMainfest.xml 文件中添加权限：
 
 ```
   <!--基础功能所需权限-->
@@ -78,6 +78,28 @@ flutter 萤石云直播插件
 ```
 
 
+使用 kotlin 在 MainActivity 添加
+```kotlin
+class MainActivity: FlutterActivity() {
+    override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
+        super.configureFlutterEngine(flutterEngine)
+        flutterEngine.platformViewsController.registry.registerViewFactory("cspy/flutter_ys7/videoView",
+                FlutterYs7ViewFactory(flutterEngine.dartExecutor.binaryMessenger,application))
+    }
+}
+```
+
+使用 java 在 MainActivity 添加
+```java
+public class MainActivity extends FlutterActivity {
+    @Override
+    public void configureFlutterEngine(@NonNull FlutterEngine flutterEngine) {
+        super.configureFlutterEngine(flutterEngine);
+        flutterEngine.getPlatformViewsController().getRegistry().registerViewFactory("cspy/flutter_ys7/videoView",
+                new FlutterYs7ViewFactory(flutterEngine.getDartExecutor().getBinaryMessenger(),getApplication()));
+    }
+}
+```
 
 #### 代码混淆
 
@@ -167,5 +189,25 @@ flutter 萤石云直播插件
 
 ```dart
 // 详情见example/lib/main.dart
+
+onTap: () async {
+
+// sdk只需要初始化一次
+await FlutterYs7.initSdk("appkey");
+
+//   'session': 'at.50exb3bva7qcfn0398ll409t7sa3dlou-6t5ui3a7hx-0u7rtks-xm4axxp9v',
+//   'deviceSerial': 'C24673046',
+//   'cameraNo': 1,
+//   'verifyCode': "ccv123456"
+
+var result = await FlutterYs7.startVideo3(
+'at.50exb3bva7qcfn0398ll409t7sa3dlou-6t5ui3a7hx-0u7rtks-xm4axxp9v',
+'C24673046',
+'ccv123456'
+);
+print(result);
+
+}
+
 ```
 

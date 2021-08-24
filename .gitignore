@@ -1,4 +1,5 @@
 .idea
+example/.idea
 
 .DS_Store
 .dart_tool/
@@ -7,3 +8,4 @@
 .pub/
 
 build/
+

@@ -5,7 +5,6 @@ import EZOpenSDKFramework
 public class SwiftFlutterYs7Plugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {
 
-  EZOpenSDK.initLib(withAppKey: "c98f55869e7e486fa9154e421ae4959d")
   let factory = EZUIPlayerViewFactory(messenger: registrar.messenger())
   registrar.register(factory, withId: "cspy/flutter_ys7/videoView")
 

@@ -24,7 +24,7 @@ class EZUIPlayerView: NSObject, FlutterPlatformView, EZPlayerDelegate  {
         self.messenger = binaryMessenger
         self.player = EZOpenSDK.createPlayer(withDeviceSerial: "123", cameraNo: 1)
         super.init()
-        createNativeView(view: _view)
+//         createNativeView(view: _view)
         initMethodChannel()
         player.destoryPlayer()
     }
@@ -78,6 +78,10 @@ class EZUIPlayerView: NSObject, FlutterPlatformView, EZPlayerDelegate  {
             player.stopRealPlay()
             player.destoryPlayer()
             result("停止播放")
+        } else if call.method == "init_sdk" {
+            let data:Optional<Dictionary> = call.arguments as! Dictionary<String, String>
+
+            EZOpenSDK.initLib(withAppKey: data?["appKey"])
         } else {
             result(FlutterMethodNotImplemented)
         }

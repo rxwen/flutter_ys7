@@ -1,5 +1,29 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.cspy.flutter_ys7.flutter_ys7_example">
+
+    <!--基础功能所需权限-->
+    <!--用于访问网络-->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!--用于保存抓取图片，码流等行为-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!--配网所需权限,由于会涉及到网络连接等行为，同时还有安全方面的机制，因为也会使用到FINE_LOCATION-->
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
+    <!--对讲所需权限-->
+    <!--可修改对讲方式，如使用听筒或者耳机播放等-->
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <!--对讲时，采集麦克风的音频输入-->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <!--视频通话权限所需-->
+    <!--视频通话时，采集摄像头视频-->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!--视频通话时，采集麦克风的音频输入-->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
    <application
         android:label="flutter_ys7_example"
         android:icon="@mipmap/ic_launcher">
