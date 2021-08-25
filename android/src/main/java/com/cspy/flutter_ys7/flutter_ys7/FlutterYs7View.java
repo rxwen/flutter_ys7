@@ -54,10 +54,6 @@ public class FlutterYs7View implements PlatformView, MethodChannel.MethodCallHan
         } else if (call.method.equals("end")) {
             ezPlayer.stopRealPlay();
             ezPlayer.release();
-        } else if (call.method.equals("init_sdk")) {
-            String appKey = call.argument("appKey");
-            Log.d("h","appKey = " + appKey);
-            result.success(EZOpenSDK.initLib(this.application,appKey));
         } else if (call.method.equals("test")) {
             String token = call.argument("token");
             Log.d("h","test = " + token);

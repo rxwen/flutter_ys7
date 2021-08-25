@@ -6,6 +6,8 @@ class FlutterYs7 {
 
   static const _channel = const MethodChannel("cspy/flutter_ys7");
 
+  static const _plugin_channel = const MethodChannel("cspy/flutter_ys7/plugin");
+
   // static Future<String> get platformVersion async {
   //   final String version = await _channel.invokeMethod('getPlatformVersion');
   //   return version;
@@ -44,12 +46,11 @@ class FlutterYs7 {
     String token,
     String deviceSerial,
   ) async {
-    return await startVideo4(token, deviceSerial, null, 1);
+    return await startVideo4(token, deviceSerial, '', 1);
   }
 
   static Future<bool> initSdk(String appKey) async {
-    // EZOpenSDK.initLib(withAppKey: "c98f55869e7e486fa9154e421ae4959d")
-    var result = await _channel.invokeMethod("init_sdk", {
+    var result = await _plugin_channel.invokeMethod("init_sdk", {
       'appKey': appKey,
     });
     return true;
