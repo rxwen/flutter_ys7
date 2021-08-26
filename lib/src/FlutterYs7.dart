@@ -24,13 +24,6 @@ class FlutterYs7 {
       'verifyCode': verifyCode
     });
 
-    // var result = await platform1.invokeMethod("start", {
-    //   'token': 'at.50exb3bva7qcfn0398ll409t7sa3dlou-6t5ui3a7hx-0u7rtks-xm4axxp9v',
-    //   'deviceSerial': 'C24673046',
-    //   'cameraNo': 1,
-    //   'verifyCode': "ccv123456"
-    // });
-
     return true;
   }
 
@@ -43,9 +36,9 @@ class FlutterYs7 {
   }
 
   static Future<bool> startVideo2(
-    String token,
-    String deviceSerial,
-  ) async {
+      String token,
+      String deviceSerial,
+      ) async {
     return await startVideo4(token, deviceSerial, '', 1);
   }
 
@@ -53,6 +46,11 @@ class FlutterYs7 {
     var result = await _plugin_channel.invokeMethod("init_sdk", {
       'appKey': appKey,
     });
+    return true;
+  }
+
+  static Future<bool> endVideo( ) async {
+    var result = await _channel.invokeMethod("end");
     return true;
   }
 

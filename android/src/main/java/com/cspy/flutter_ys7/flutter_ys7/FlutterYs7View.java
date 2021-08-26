@@ -26,7 +26,7 @@ public class FlutterYs7View implements PlatformView, MethodChannel.MethodCallHan
     private static final String CHANNEL = "cspy/flutter_ys7";
     private Application application;
     private SurfaceView surfaceView;
-    private EZPlayer ezPlayer;
+    private EZPlayer ezPlayer = null;
 
     public FlutterYs7View(@NonNull Context context, int id, @Nullable Map<String, Object> creationParams, BinaryMessenger messenger, Application application) {
         this.messenger = messenger;
@@ -38,6 +38,7 @@ public class FlutterYs7View implements PlatformView, MethodChannel.MethodCallHan
     @Override
     public void onMethodCall(@NonNull MethodCall call, @NonNull MethodChannel.Result result) {
         if(call.method.equals("start")) {
+            surfaceView = new SurfaceView(application.getApplicationContext());
             String token = call.argument("token");
             Log.d("h","token = " + token);
             Log.d("h","deviceSerial = " + call.argument("deviceSerial"));
@@ -69,6 +70,9 @@ public class FlutterYs7View implements PlatformView, MethodChannel.MethodCallHan
 
     @Override
     public void dispose() {
-
+        if(null != ezPlayer) {
+            ezPlayer.stopRealPlay();
+            ezPlayer.release();
+        }
     }
 }

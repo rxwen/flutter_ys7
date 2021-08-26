@@ -9,21 +9,16 @@ class MyButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-
-        // sdk只需要初始化一次
-        await FlutterYs7.initSdk("c98f55869e7e486fa9154e421ae4959d");
-
         print('MyButton was tapped!');
+        // sdk只需要初始化一次
+        await FlutterYs7.initSdk("sdk");
 
-        //   'token': 'at.50exb3bva7qcfn0398ll409t7sa3dlou-6t5ui3a7hx-0u7rtks-xm4axxp9v',
-        //   'deviceSerial': 'C24673046',
-        //   'cameraNo': 1,
-        //   'verifyCode': "ccv123456"
+        print('ys7 sdk init!');
 
         var result = await FlutterYs7.startVideo3(
-            'at.a3wss7177mzw525va8454ztt9le43evi-8abzp1oham-1m38tuc-nna3csok0',
+            'at.1e6vvgyj8ikdxxrnae18h5r5bei4t826-7hz47q23j4-1v2o3f1-jbp3rvz6q',
             'C24673046',
-            'ccv123456'
+            'password'
         );
         print(result);
 

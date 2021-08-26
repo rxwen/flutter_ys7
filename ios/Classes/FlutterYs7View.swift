@@ -24,7 +24,7 @@ class EZUIPlayerView: NSObject, FlutterPlatformView, EZPlayerDelegate  {
         self.messenger = binaryMessenger
         self.player = EZOpenSDK.createPlayer(withDeviceSerial: "123", cameraNo: 1)
         super.init()
-//         createNativeView(view: _view)
+//        createNativeView(view: _view)
         initMethodChannel()
         player.destoryPlayer()
     }
@@ -42,8 +42,8 @@ class EZUIPlayerView: NSObject, FlutterPlatformView, EZPlayerDelegate  {
     func createNativeView(view _view: UIView){
         _view.backgroundColor = UIColor.blue
         let nativeLabel = UILabel()
-        nativeLabel.text = "Native text from iOS"
-        nativeLabel.textColor = UIColor.white
+//        nativeLabel.text = "Native text from iOS"
+        nativeLabel.textColor = UIColor.black
         nativeLabel.textAlignment = .center
         nativeLabel.frame = CGRect(x: 0, y: 0, width: 180, height: 48.0)
         _view.addSubview(nativeLabel)
@@ -78,11 +78,7 @@ class EZUIPlayerView: NSObject, FlutterPlatformView, EZPlayerDelegate  {
             player.stopRealPlay()
             player.destoryPlayer()
             result("停止播放")
-        } else if call.method == "init_sdk" {
-            let data:Optional<Dictionary> = call.arguments as! Dictionary<String, String>
-
-            EZOpenSDK.initLib(withAppKey: data?["appKey"])
-        } else {
+        }  else {
             result(FlutterMethodNotImplemented)
         }
     }

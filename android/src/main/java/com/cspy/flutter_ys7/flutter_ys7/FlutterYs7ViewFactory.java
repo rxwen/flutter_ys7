@@ -49,7 +49,7 @@ public class FlutterYs7ViewFactory extends PlatformViewFactory implements Method
     }
 
     @Override
-    public void onMethodCall(@NonNull @NotNull MethodCall call, @NonNull @NotNull MethodChannel.Result result) {
+    public void onMethodCall(@NotNull MethodCall call, @NotNull MethodChannel.Result result) {
         if (call.method.equals("init_sdk")) {
             String appKey = call.argument("appKey");
             Log.d("h","appKey = " + appKey);
