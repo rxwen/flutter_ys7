@@ -195,15 +195,14 @@ onTap: () async {
 // sdk只需要初始化一次
 await FlutterYs7.initSdk("appkey");
 
-//   'session': 'at.50exb3bva7qcfn0398ll409t7sa3dlou-6t5ui3a7hx-0u7rtks-xm4axxp9v',
-//   'deviceSerial': 'C24673046',
+//   'deviceSerial': '设备序列号',
 //   'cameraNo': 1,
-//   'verifyCode': "ccv123456"
+//   'verifyCode': "passworld"
 
 var result = await FlutterYs7.startVideo3(
-'at.50exb3bva7qcfn0398ll409t7sa3dlou-6t5ui3a7hx-0u7rtks-xm4axxp9v',
-'C24673046',
-'ccv123456'
+'AccessToken',
+'设备序列号',
+'passworld'
 );
 print(result);
 

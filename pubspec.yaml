@@ -1,7 +1,6 @@
 name: flutter_ys7
-description: flutter 萤石云 sdk 插件，支持安卓/ios，更多功能开发中.
-version: 0.1.4
-author: czw
+description: flutter yingshi sdk plugin for IOS/Android, based on EZOpenSDK .
+version: 0.1.5
 homepage: https://gitee.com/isCZW/flutter_ys7
 repository: https://gitee.com/isCZW/flutter_ys7
 environment:
@@ -64,4 +63,5 @@ flutter:
   # For details regarding fonts in packages, see
   # https://flutter.dev/custom-fonts/#from-packages
 
-# flutter packages pub publish
+  # 上传 flutter packages pub publish
+  # ios 依赖 https://gitee.com/cocoa-pods/EZOpenSDK_iOS
