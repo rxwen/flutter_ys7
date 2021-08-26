@@ -11,12 +11,12 @@ class MyButton extends StatelessWidget {
       onTap: () async {
         print('MyButton was tapped!');
         // sdk只需要初始化一次
-        await FlutterYs7.initSdk("sdk");
+        await FlutterYs7.initSdk("AppKey");
 
         print('ys7 sdk init!');
 
         var result = await FlutterYs7.startVideo3(
-            'at.1e6vvgyj8ikdxxrnae18h5r5bei4t826-7hz47q23j4-1v2o3f1-jbp3rvz6q',
+            'at.a3wss7177mzw525va8454ztt9le43evi-8abzp1oham-1m38tuc-nna3csok0',
             'C24673046',
             'password'
         );
