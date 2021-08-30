@@ -1,6 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/services.dart';
+import 'package:flutter_ys7/src/FlutterYs7Entity.dart';
+
+import 'FlutterYs7HttpApi.dart';
 
 class FlutterYs7 {
 
@@ -49,9 +52,33 @@ class FlutterYs7 {
     return true;
   }
 
-  static Future<bool> endVideo( ) async {
+  static Future<bool> endVideo() async {
     var result = await _channel.invokeMethod("end");
     return true;
+  }
+
+  static Future<bool> ptzStart(YS7PtzRequestEntity requestEntity) async {
+    return await FlutterYs7HttpApi.device_ptz_start(requestEntity);
+  }
+
+  static Future<bool> ptzStop(YS7PtzRequestEntity requestEntity) async {
+    return await FlutterYs7HttpApi.device_ptz_stop(requestEntity);
+  }
+
+  static Future<bool> deviceAdd(YS7PtzRequestEntity requestEntity) async {
+    return await FlutterYs7HttpApi.device_add(requestEntity);
+  }
+
+  static Future<bool> deviceDelete(YS7PtzRequestEntity requestEntity) async {
+    return await FlutterYs7HttpApi.device_delete(requestEntity);
+  }
+
+  static Future<bool> deviceIpcAdd(YS7PtzRequestEntity requestEntity) async {
+    return await FlutterYs7HttpApi.device_ipc_add(requestEntity);
+  }
+
+  static Future<bool> deviceIpcDelete(YS7PtzRequestEntity requestEntity) async {
+    return await FlutterYs7HttpApi.device_ipc_delete(requestEntity);
   }
 
 }
