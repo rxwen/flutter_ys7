@@ -78,7 +78,11 @@ class EZUIPlayerView: NSObject, FlutterPlatformView, EZPlayerDelegate  {
             player.stopRealPlay()
             player.destoryPlayer()
             result("停止播放")
-        }  else {
+        }  else if call.method == "queryPlayback" {
+            let data:Optional<Dictionary> = call.arguments as! Dictionary<String, Any>
+
+            result("回放查询")
+        } else {
             result(FlutterMethodNotImplemented)
         }
     }

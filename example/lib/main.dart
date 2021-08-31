@@ -87,6 +87,29 @@ class MyButton1 extends StatelessWidget {
   }
 }
 
+class MyButton2 extends StatelessWidget {
+  const MyButton2({this.contentWidget, this.onTapAction, this.direction, Key key})
+      : super(key: key);
+
+  final Widget contentWidget;
+  final Function onTapAction;
+  final int direction;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () async {
+        // print('MyButton was tapped!');
+        if(onTapAction != null) {
+          onTapAction('myButton was hello world');
+        }
+
+      },
+      child: contentWidget,
+    );
+  }
+}
+
 class MyView extends StatelessWidget {
   const MyView({Key key}) : super(key: key);
 
@@ -111,7 +134,7 @@ class MyView extends StatelessWidget {
             contentWidget: Container(
               height: 50.0,
               padding: const EdgeInsets.all(8.0),
-              margin: const EdgeInsets.symmetric(horizontal: 8.0),
+              margin: const EdgeInsets.symmetric(horizontal: 8.0,vertical: 4),
               decoration: BoxDecoration(color: Colors.blue),
               child: const Center(
                 child: Text('云台向上'),
@@ -123,13 +146,49 @@ class MyView extends StatelessWidget {
             contentWidget: Container(
               height: 50.0,
               padding: const EdgeInsets.all(8.0),
-              margin: const EdgeInsets.symmetric(horizontal: 8.0),
+              margin: const EdgeInsets.symmetric(horizontal: 8.0,vertical: 4),
               decoration: BoxDecoration(color: Colors.blue),
               child: const Center(
                 child: Text('云台向下'),
               ),
             ),
           ),
+          MyButton2(
+            direction: 1,
+            onTapAction: (str){
+              var requestEntity = new YS7PtzRequestEntity();
+              requestEntity.accessToken = '';
+              requestEntity.deviceSerial = '';
+              requestEntity.ipcSerial = '';
+              // requestEntity.channelNo = 0;
+
+              FlutterYs7.deviceIpcDelete(requestEntity);
+            },
+            contentWidget: Container(
+              height: 50.0,
+              padding: const EdgeInsets.all(8.0),
+              margin: const EdgeInsets.symmetric(horizontal: 8.0,vertical: 4),
+              decoration: BoxDecoration(color: Colors.blue),
+              child: const Center(
+                child: Text('NVR绑定ipc'),
+              ),
+            ),
+          ),
+          MyButton2(
+            direction: 1,
+            onTapAction: (str){
+
+            },
+            contentWidget: Container(
+              height: 50.0,
+              padding: const EdgeInsets.all(8.0),
+              margin: const EdgeInsets.symmetric(horizontal: 8.0,vertical: 4),
+              decoration: BoxDecoration(color: Colors.blue),
+              child: const Center(
+                child: Text('回放'),
+              ),
+            ),
+          )
         ],
       ),
     );

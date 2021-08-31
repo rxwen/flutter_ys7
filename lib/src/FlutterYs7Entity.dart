@@ -3,7 +3,7 @@ class YS7PtzRequestEntity {
   String accessToken;
   String deviceSerial;
   String validateCode;
-  String ipcserial;
+  String ipcSerial;
   int channelNo;
   int direction;
   int speed;
@@ -14,7 +14,7 @@ class YS7PtzRequestEntity {
       {this.accessToken,
         this.deviceSerial,
         this.validateCode,
-        this.ipcserial,
+        this.ipcSerial,
         this.channelNo,
         this.direction,
         this.speed,
@@ -25,7 +25,7 @@ class YS7PtzRequestEntity {
     accessToken = json['accessToken'];
     deviceSerial = json['deviceSerial'];
     validateCode = json['validateCode'];
-    ipcserial = json['ipcserial'];
+    ipcSerial = json['ipcSerial'];
     channelNo = json['channelNo'];
     direction = json['direction'];
     speed = json['speed'];
@@ -38,7 +38,7 @@ class YS7PtzRequestEntity {
     data['accessToken'] = this.accessToken;
     data['deviceSerial'] = this.deviceSerial;
     data['validateCode'] = this.validateCode;
-    data['ipcserial'] = this.ipcserial;
+    data['ipcSerial'] = this.ipcSerial;
     data['channelNo'] = this.channelNo;
     data['direction'] = this.direction;
     data['speed'] = this.speed;
