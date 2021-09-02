@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 
-import 'FlutterYs7Entity.dart';
+import 'package:flutter_ys7/src/entity/Ys7PtzRequestEntity.dart';
 
 void getHttp() async {
   try {

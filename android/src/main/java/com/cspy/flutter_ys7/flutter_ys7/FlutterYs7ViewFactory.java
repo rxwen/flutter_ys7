@@ -54,6 +54,10 @@ public class FlutterYs7ViewFactory extends PlatformViewFactory implements Method
             String appKey = call.argument("appKey");
             Log.d("h","appKey = " + appKey);
             result.success(EZOpenSDK.initLib(this.application,appKey));
+        } else if (call.method.equals("set_access_token")) {
+            String AccessToken = call.argument("accessToken");
+            EZOpenSDK.getInstance().setAccessToken(AccessToken);
+            result.success(true);
         } else {
             result.notImplemented();
         }
