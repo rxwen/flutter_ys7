@@ -48,71 +48,47 @@ public class FlutterYs7View implements PlatformView, MethodChannel.MethodCallHan
         this.messenger = messenger;
         this.application = application;
         new MethodChannel(messenger,CHANNEL).setMethodCallHandler(this);
-        surfaceView = new SurfaceView(context);
         nativeToFlutterYs7 = new BasicMessageChannel<>(messenger, "nativeToFlutterYs7", new StandardMessageCodec());
+
+        surfaceView = new SurfaceView(context);
     }
 
     @Override
     public void onMethodCall(@NonNull MethodCall call, @NonNull MethodChannel.Result result) {
-        if(call.method.equals("start")) {
-            String token = call.argument("token");
-            Log.d("h","token = " + token);
-            Log.d("h","deviceSerial = " + call.argument("deviceSerial"));
-            Log.d("h","verifyCode = " + call.argument("verifyCode"));
-            Log.d("h","cameraNo = " + call.argument("cameraNo"));
-            EZOpenSDK.getInstance().setAccessToken(token);
-            ezPlayer = EZOpenSDK.getInstance().createPlayer((String) call.argument("deviceSerial"), (int) call.argument("cameraNo"));
-//            ezPlayer.setHandler(new Ys7ViewHandle());
-
-            surfaceView.getHolder().addCallback(new SurfaceHolder.Callback() {
-                @Override
-                public void surfaceCreated(@NonNull SurfaceHolder holder) {
-                    if (ezPlayer != null) {
-                        ezPlayer.setSurfaceHold(holder);
-                    }
-                }
-
-                @Override
-                public void surfaceChanged(@NonNull SurfaceHolder holder, int format, int width, int height) {
-
-                }
-
-                @Override
-                public void surfaceDestroyed(@NonNull SurfaceHolder holder) {
-                    if (ezPlayer != null) {
-                        ezPlayer.setSurfaceHold(null);
-                    }
-//                    mRealPlaySh = null;
-
-                }
-            });
-            ezPlayer.setSurfaceHold(surfaceView.getHolder());
-            ezPlayer.setPlayVerifyCode((String) call.argument("verifyCode"));
+        if(call.method.equals("startRealPlay")) {
             ezPlayer.startRealPlay();
             result.success("success");
-        } else if (call.method.equals("end")) {
+        }
+        else if (call.method.equals("stopRealPlay")) {
             ezPlayer.stopRealPlay();
+            result.success("success");
+        }
+        else if (call.method.equals("release")) {
             ezPlayer.release();
             result.success("success");
-        } else if (call.method.equals("queryPlayback")) {
+        }
+        else if (call.method.equals("queryPlayback")) {
 
             final long callBackFuncId = call.argument("callBackFuncId");
+            final long startTime = call.argument("startTime");
+            final long endTime = call.argument("endTime");
+            final String deviceSerial = call.argument("deviceSerial");
+            String verifyCode = call.argument("verifyCode");
+            final int cameraNo = call.argument("cameraNo");
 
-            final Calendar startTime = Calendar.getInstance();
-            startTime.setTimeInMillis(1630368000000l);
+            final Calendar startCalendar = Calendar.getInstance();
+            startCalendar.setTimeInMillis(startTime);
 
-            final Calendar endTime = Calendar.getInstance();
-            endTime.setTimeInMillis(1630425600000l);
+            final Calendar endCalendar = Calendar.getInstance();
+            endCalendar.setTimeInMillis(endTime);
 
             final Looper looper = Looper.myLooper();
             // Android 4.0 之后不能在主线程中请求HTTP请求
             new Thread(new Runnable(){
                 @Override
                 public void run() {
-//                    List<EZDeviceRecordFile> ezDeviceRecordFiles = null;
                     try {
-                        EZOpenSDK.getInstance().setAccessToken("at.cqqm2svf7230lqu30f2h8zrb69mi2gcf-5tprj38xjd-10amrfy-efbfufids");
-                        ezDeviceRecordFiles = EZOpenSDK.getInstance().searchRecordFileFromDevice("G19128980", 1, startTime, endTime);
+                        List<EZDeviceRecordFile> ezDeviceRecordFiles = EZOpenSDK.getInstance().searchRecordFileFromDevice(deviceSerial, cameraNo, startCalendar, endCalendar);
                         // 发送消息给flutter
                         final String jsonString = new Gson().toJson(ezDeviceRecordFiles);
 
@@ -127,18 +103,14 @@ public class FlutterYs7View implements PlatformView, MethodChannel.MethodCallHan
 
                     } catch (BaseException e) {
                         e.printStackTrace();
-//                        result.error("1", "发生错误",e.getMessage());
                     }
                 }
             }).start();
 
             result.success("success");
 
-        } else if (call.method.equals("playback")) {
-
-            long startTime = call.argument("startTime");
-            long endTime = call.argument("endTime");
-
+        }
+        else if (call.method.equals("EZPlayer_init")){
             String deviceSerial = call.argument("deviceSerial");
             String verifyCode = call.argument("verifyCode");
             int cameraNo = call.argument("cameraNo");
@@ -172,23 +144,55 @@ public class FlutterYs7View implements PlatformView, MethodChannel.MethodCallHan
             ezPlayer.setSurfaceHold(surfaceView.getHolder());
 
             ezPlayer.setPlayVerifyCode(verifyCode);
+            result.success("success");
+        }
+        else if (call.method.equals("startPlayback")) {
+
+            long startTime = call.argument("startTime");
+            long endTime = call.argument("endTime");
+
 //            EZOpenSDK.enableP2P(true);
 //            EZOpenSDK.showSDKLog(true);
+
             final Calendar startCalendar = Calendar.getInstance();
             startCalendar.setTimeInMillis(startTime);
-//
+
             final Calendar endCalendar = Calendar.getInstance();
             endCalendar.setTimeInMillis(endTime);
-//            boolean b = ezPlayer.startPlayback(ezDeviceRecordFiles.get(0));
             boolean b = ezPlayer.startPlayback(startCalendar, endCalendar);
             result.success(b);
-        } else if (call.method.equals("test")) {
+        }
+        else if (call.method.equals("stopPlayback")) {
+            ezPlayer.stopPlayback(); // 停止回放
+            result.success("success");
+        }
+        else if (call.method.equals("getOSDTime")) {
+            Calendar osdTime = ezPlayer.getOSDTime();
+            long timeInMillis = osdTime.getTimeInMillis();
+            result.success(timeInMillis);
+        }
+        else if (call.method.equals("pausePlayback")) {
+            Calendar osdTime = ezPlayer.getOSDTime();
+            ezPlayer.pausePlayback(); // 暂停回放
+            long timeInMillis = osdTime.getTimeInMillis();
+            result.success(timeInMillis);
+        }
+        else if (call.method.equals("resumePlayback")) {
+            ezPlayer.resumePlayback(); // 恢复回放
+            result.success("success");
+        }
+        else if (call.method.equals("test")) {
             String token = call.argument("token");
             Log.d("h","test = " + token);
             result.success("success");
-        } else {
+        }
+        else {
           result.notImplemented();
         }
+    }
+
+    public void sendTimeToFlutter() {
+
     }
 
     @Override
@@ -199,7 +203,6 @@ public class FlutterYs7View implements PlatformView, MethodChannel.MethodCallHan
     @Override
     public void dispose() {
         if(null != ezPlayer) {
-            ezPlayer.stopRealPlay();
             ezPlayer.release();
         }
     }

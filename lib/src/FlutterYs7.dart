@@ -15,13 +15,12 @@ class FlutterYs7 {
 
   static const BasicMessageChannel<dynamic> _native_ys7 =
       const BasicMessageChannel("nativeToFlutterYs7", StandardMessageCodec());
-  static Map<int, Function> callBackFuncMap = Map();
+  static Map<int, Function> _callBackFuncMap = Map();
 
   static void initMessageHandler() {
     // ignore: missing_return
     _native_ys7.setMessageHandler((dynamic str) {
-      Map<String, dynamic> data =
-          json.decode(str); // m2 = {name: AllenSu, area: 郑州, sex: 男, age: 18}
+      Map<String, dynamic> data = json.decode(str);
 
       if (data['code'] == 'RecordFile') {
         var fileData = json.decode(data['Data']);
@@ -34,9 +33,9 @@ class FlutterYs7 {
           // DateTime moonLanding = DateTime.parse(recordFileList[0].begin);
           // var time = moonLanding.millisecondsSinceEpoch;
           print("hello");
-          if (callBackFuncMap.containsKey(data['callBackFuncId'])) {
+          if (_callBackFuncMap.containsKey(data['callBackFuncId'])) {
             try {
-              var func = callBackFuncMap.remove(data['callBackFuncId']);
+              var func = _callBackFuncMap.remove(data['callBackFuncId']);
               func(recordFileList);
             } catch (e) {
               print('Flutter Ys7 error: $e');
@@ -96,6 +95,7 @@ class FlutterYs7 {
     return true;
   }
 
+  // 设置 accessToken
   static Future<bool> setAccessToken(String accessToken) async {
     var result = await _plugin_channel.invokeMethod("set_access_token", {
       'accessToken': accessToken,
@@ -103,44 +103,89 @@ class FlutterYs7 {
     return true;
   }
 
+  // 初始化播放器
+  static Future<bool> initEZPlayer(String deviceSerial,String verifyCode, int cameraNo) async {
+    var result = await _channel.invokeMethod("EZPlayer_init",{
+      'deviceSerial': deviceSerial,
+      'verifyCode': verifyCode,
+      'cameraNo': cameraNo,
+    });
+    return true;
+  }
+
+  // 释放
+  static Future<bool> release() async {
+    var result = await _channel.invokeMethod("release",);
+    return true;
+  }
+
+  static Future<bool> startRealPlay() async {
+    var result = await _channel.invokeMethod("startRealPlay");
+    return true;
+  }
+
+  static Future<bool> stopRealPlay() async {
+    var result = await _channel.invokeMethod("stopRealPlay");
+    return true;
+  }
+
+  static Future<int> getOSDTime() async {
+    var result = await _channel.invokeMethod("getOSDTime");
+    return result;
+  }
+
+  // 结束直播
   static Future<bool> endVideo() async {
     var result = await _channel.invokeMethod("end");
     return true;
   }
 
-  static Future<bool> queryPlayback(Function func) async {
+  // 开始回放
+  static Future<bool> startPlayback(Ys7VideoRequestEntity ys7videoRequestEntity) async {
+
+    var result = await _channel.invokeMethod("startPlayback",{
+      'startTime':ys7videoRequestEntity.startTime,
+      'endTime':ys7videoRequestEntity.endTime,
+    });
+    return true;
+  }
+
+  // 停止回放
+  static Future<bool> stopPlayback() async {
+
+    var result = await _channel.invokeMethod("stopPlayback");
+    return true;
+  }
+
+  // 查询录制视频
+  static Future<bool> queryPlayback(Ys7VideoRequestEntity request,Function func) async {
     int id = new DateTime.now().millisecondsSinceEpoch;
-    while (callBackFuncMap.containsKey(id)) {
+    while (_callBackFuncMap.containsKey(id)) {
       id = new DateTime.now().millisecondsSinceEpoch;
     }
-    callBackFuncMap[id] = func;
+    _callBackFuncMap[id] = func;
 
     var result = await _channel.invokeMethod("queryPlayback", {
       'callBackFuncId': id,
+      'startTime': request.startTime,
+      'endTime': request.endTime,
+      'deviceSerial': request.deviceSerial,
+      'cameraNo': request.cameraNo,
+      'verifyCode': request.verifyCode,
     });
     return true;
   }
 
-  static Future<bool> playback(Ys7VideoRequestEntity ys7videoRequestEntity) async {
-
-    var result = await _channel.invokeMethod("playback",{
-      'startTime':ys7videoRequestEntity.startTime,
-      'endTime':ys7videoRequestEntity.endTime,
-      'deviceSerial':ys7videoRequestEntity.deviceSerial,
-      'verifyCode':ys7videoRequestEntity.verifyCode,
-      'cameraNo': ys7videoRequestEntity.cameraNo,
-    });
-    return true;
-  }
-
+  // 控制云台
   static Future<bool> ptzStart(YS7PtzRequestEntity requestEntity) async {
     return await FlutterYs7HttpApi.device_ptz_start(requestEntity);
   }
 
+  // 停止控制
   static Future<bool> ptzStop(YS7PtzRequestEntity requestEntity) async {
     return await FlutterYs7HttpApi.device_ptz_stop(requestEntity);
   }
-
+  // 添加设备
   static Future<bool> deviceAdd(YS7PtzRequestEntity requestEntity) async {
     return await FlutterYs7HttpApi.device_add(requestEntity);
   }
