@@ -44,10 +44,7 @@ class FlutterYs7HttpApi {
   static const String POST_DEVICE_CAPACITY =
       "https://open.ys7.com/api/lapp/device/capacity";
 
-
-  // E60306588
-
-  static Future<bool> device_ptz_start(
+  static Future<YS7ResponseEntity> device_ptz_start(
       YS7PtzRequestEntity requestEntity) async {
     FormData formData = new FormData.fromMap({
       "accessToken": requestEntity.accessToken,
@@ -64,19 +61,26 @@ class FlutterYs7HttpApi {
         YS7ResponseEntity responseData =
             YS7ResponseEntity.fromJson(response.data);
         print(response);
-        if (Comparable.compare(responseData.code, "200") == 0) {
-          // == 1 大于 "200"  == -1 小于 "200"
-          return true;
-        }
+
+        return responseData;
+
+        // if (Comparable.compare(responseData.code, "200") == 0) {
+        //   // == 1 大于 "200"  == -1 小于 "200"
+        //   return true;
+        // }
+      } else {
+        // 失败
+        return YS7ResponseEntity.fromJson({
+          "code": response.statusCode,
+          "msg": response.statusMessage,
+        });
       }
-      // 失败
-      return false;
     } catch (e) {
       print(e);
     }
   }
 
-  static Future<bool> device_ptz_stop(YS7PtzRequestEntity requestEntity) async {
+  static Future<YS7ResponseEntity> device_ptz_stop(YS7PtzRequestEntity requestEntity) async {
     FormData formData = new FormData.fromMap({
       "accessToken": requestEntity.accessToken,
       "deviceSerial": requestEntity.deviceSerial,
@@ -88,16 +92,16 @@ class FlutterYs7HttpApi {
       Response response =
           await Dio().post(POST_DEVICE_PTZ_STOP, data: formData);
       if (response.statusCode == 200) {
-        YS7ResponseEntity responseData =
-            YS7ResponseEntity.fromJson(response.data);
+        YS7ResponseEntity responseData = YS7ResponseEntity.fromJson(response.data);
         print(response);
-        if (Comparable.compare(responseData.code, "200") == 0) {
-          // == 1 大于 "200"  == -1 小于 "200"
-          return true;
-        }
+        return responseData;
+      } else {
+        // 失败
+        return YS7ResponseEntity.fromJson({
+          "code": response.statusCode,
+          "msg": response.statusMessage,
+        });
       }
-      // 失败
-      return false;
     } catch (e) {
       print(e);
     }

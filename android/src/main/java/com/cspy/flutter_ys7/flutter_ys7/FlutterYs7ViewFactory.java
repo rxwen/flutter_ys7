@@ -58,6 +58,9 @@ public class FlutterYs7ViewFactory extends PlatformViewFactory implements Method
             String AccessToken = call.argument("accessToken");
             EZOpenSDK.getInstance().setAccessToken(AccessToken);
             result.success(true);
+        } else if (call.method.equals("destoryLib")) {
+            EZOpenSDK.finiLib();
+            result.success(true);
         } else {
             result.notImplemented();
         }

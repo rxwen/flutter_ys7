@@ -1,6 +1,6 @@
 name: flutter_ys7
 description: flutter yingshi sdk plugin for IOS/Android, based on EZOpenSDK .
-version: 0.1.8
+version: 0.2.4
 homepage: https://gitee.com/isCZW/flutter_ys7
 repository: https://gitee.com/isCZW/flutter_ys7
 environment:

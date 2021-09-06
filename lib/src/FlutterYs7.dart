@@ -95,6 +95,13 @@ class FlutterYs7 {
     return true;
   }
 
+  static Future<bool> destoryLib(String appKey) async {
+    var result = await _plugin_channel.invokeMethod("destoryLib");
+    return true;
+  }
+
+
+
   // 设置 accessToken
   static Future<bool> setAccessToken(String accessToken) async {
     var result = await _plugin_channel.invokeMethod("set_access_token", {
@@ -116,6 +123,22 @@ class FlutterYs7 {
   // 释放
   static Future<bool> release() async {
     var result = await _channel.invokeMethod("release",);
+    return true;
+  }
+
+  // 开启声音
+  static Future<bool> closeSound() async {
+    var result = await _channel.invokeMethod("sound", {
+      'Sound': false,
+    });
+    return true;
+  }
+
+  // 关闭声音
+  static Future<bool> openSound( ) async {
+    var result = await _channel.invokeMethod("sound", {
+      'Sound': true,
+    });
     return true;
   }
 
@@ -157,7 +180,7 @@ class FlutterYs7 {
     return true;
   }
 
-  // 查询录制视频
+  // 查询录制视频(只实现了android)
   static Future<bool> queryPlayback(Ys7VideoRequestEntity request,Function func) async {
     int id = new DateTime.now().millisecondsSinceEpoch;
     while (_callBackFuncMap.containsKey(id)) {
@@ -177,12 +200,12 @@ class FlutterYs7 {
   }
 
   // 控制云台
-  static Future<bool> ptzStart(YS7PtzRequestEntity requestEntity) async {
+  static Future<YS7ResponseEntity> ptzStart(YS7PtzRequestEntity requestEntity) async {
     return await FlutterYs7HttpApi.device_ptz_start(requestEntity);
   }
 
   // 停止控制
-  static Future<bool> ptzStop(YS7PtzRequestEntity requestEntity) async {
+  static Future<YS7ResponseEntity> ptzStop(YS7PtzRequestEntity requestEntity) async {
     return await FlutterYs7HttpApi.device_ptz_stop(requestEntity);
   }
   // 添加设备

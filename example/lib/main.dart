@@ -1,10 +1,9 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_ys7/flutter_ys7.dart';
-import 'package:flutter_ys7_example/HousePerson.dart';
-import 'package:flutter_ys7_example/SCBScrollBar.dart';
 
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
@@ -42,7 +41,9 @@ class MyButton1 extends StatelessWidget {
           direction: this.direction,
           speed: 1,
         );
-        FlutterYs7.ptzStart(requestData);
+        FlutterYs7.ptzStart(requestData).then((res){
+          print("onTapDown $res");
+        });
       },
       onTapUp: (tapUp) {
         print('MyButton was onTapUp!');
@@ -53,7 +54,9 @@ class MyButton1 extends StatelessWidget {
           direction: this.direction,
           speed: 1,
         );
-        FlutterYs7.ptzStop(requestData);
+        FlutterYs7.ptzStop(requestData).then((res){
+          print("onTapUp $res");
+        });
       },
       child: contentWidget,
     );
@@ -506,6 +509,9 @@ class _MyViewState extends State<MyView> {
   }
 
   void getplayBackTime() {
+    if(Platform.isIOS){
+      return;
+    }
     if (startPlayTime != null) {
       startPlayTime.cancel();
     }

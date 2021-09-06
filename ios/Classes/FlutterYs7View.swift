@@ -74,15 +74,95 @@ class EZUIPlayerView: NSObject, FlutterPlatformView, EZPlayerDelegate  {
             player.setPlayerView(_view)
             player.startRealPlay()
             result("开始播放")
-        } else if call.method == "end" {
+        }
+        else if call.method == "end" {
             player.stopRealPlay()
             player.destoryPlayer()
             result("停止播放")
         }  else if call.method == "queryPlayback" {
-            let data:Optional<Dictionary> = call.arguments as! Dictionary<String, Any>
+//            let data:Optional<Dictionary> = call.arguments as! Dictionary<String, Any>
 
             result("回放查询")
-        } else {
+        }
+        else if call.method == "startRealPlay" {
+            player.startRealPlay()
+            result("success")
+        }
+        else if call.method == "stopRealPlay" {
+            player.stopRealPlay()
+            result("success")
+        }
+        else if call.method == "release" {
+            player.destoryPlayer()
+            result("success")
+        }
+        else if call.method == "queryPlayback" {
+//            player.destoryPlayer()
+            result("success")
+        }
+        else if call.method == "EZPlayer_init" {
+            let data:Optional<Dictionary> = call.arguments as! Dictionary<String, Any>
+
+            print(data)
+            print(type(of:data))
+
+            player = EZOpenSDK.createPlayer(withDeviceSerial: data?["deviceSerial"] as! String, cameraNo: data?["cameraNo"] as! Int)
+//            player.delegate = self
+
+            let verifyCode = data?["verifyCode"] as? String
+            if(verifyCode != nil) {
+                player.setPlayVerifyCode(data?["verifyCode"] as! String)
+            } else {
+                print("verifyCode is null !!!")
+            }
+
+            player.setPlayerView(_view)
+            result("success")
+        }
+        else if call.method == "startPlayback" {
+            let data:Optional<Dictionary> = call.arguments as! Dictionary<String, Any>
+            
+            let startTime = data?["startTime"] as! Int
+            let endTime = data?["endTime"] as! Int
+            
+            let recordFile = EZDeviceRecordFile()
+            recordFile.type = 1;
+            recordFile.channelType = "D";
+            let startDate = Date(timeIntervalSince1970: TimeInterval(startTime)/1000)
+            recordFile.startTime = startDate
+            
+            let endDate = Date(timeIntervalSince1970: TimeInterval(endTime)/1000)
+            recordFile.stopTime = endDate
+            print(startTime)
+            print("ios startTime")
+            print(TimeInterval(startTime))
+            
+            let nowDate = Date()
+            print("ios nowDate")
+            print(nowDate.timeIntervalSince1970)
+            
+            let bool = player.startPlayback(fromDevice: recordFile)
+            result(bool)
+        }
+        else if call.method == "stopPlayback" {
+            player.stopPlayback()
+            result("success")
+        }
+        else if call.method == "getOSDTime" {
+            let odsTime = player.getOSDTime()
+            let resultNum = Int(odsTime?.timeIntervalSince1970 ?? 0) * 1000;
+            result(resultNum)
+        }
+        else if call.method == "sound" {
+            let data:Optional<Dictionary> = call.arguments as! Dictionary<String, Any>
+            if(data?["Sound"] as! Bool) {
+                player.openSound();
+            } else {
+                player.closeSound();
+            }
+            result("success")
+        }
+        else {
             result(FlutterMethodNotImplemented)
         }
     }

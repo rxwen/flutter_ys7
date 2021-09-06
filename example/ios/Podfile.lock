@@ -1,8 +1,8 @@
 PODS:
-  - EZOpenSDK (4.8.6)
+  - EZOpenSDK_iOS (4.16.6)
   - Flutter (1.0.0)
   - flutter_ys7 (0.0.1):
-    - EZOpenSDK
+    - EZOpenSDK_iOS (= 4.16.6)
     - Flutter
 
 DEPENDENCIES:
@@ -11,7 +11,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
-    - EZOpenSDK
+    - EZOpenSDK_iOS
 
 EXTERNAL SOURCES:
   Flutter:
@@ -20,9 +20,9 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_ys7/ios"
 
 SPEC CHECKSUMS:
-  EZOpenSDK: 53b5b0936da53dc006c3e313e119a85268223d9d
+  EZOpenSDK_iOS: 293058f982ba9b89d368e1f3319b4b7892667bb1
   Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
-  flutter_ys7: 36c8f7d701ceedd31490f9dc7db72d51293d5e3d
+  flutter_ys7: bcc707650ad415d7850a27a15aca3e4db7561616
 
 PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
 

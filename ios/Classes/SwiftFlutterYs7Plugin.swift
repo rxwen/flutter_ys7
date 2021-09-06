@@ -17,10 +17,16 @@ public class SwiftFlutterYs7Plugin: NSObject, FlutterPlugin {
 //     result("iOS " + UIDevice.current.systemVersion)
     if call.method == "init_sdk" {
         let data:Optional<Dictionary> = call.arguments as! Dictionary<String, String>
-        print(data)
 
         result(EZOpenSDK.initLib(withAppKey: data?["appKey"]))
-    }else {
+    } else if call.method == "set_access_token" {
+        let data:Optional<Dictionary> = call.arguments as! Dictionary<String, String>
+        EZOpenSDK.setAccessToken(data?["accessToken"] as! String)
+        result("success")
+    } else if call.method == "destoryLib" {
+        EZOpenSDK.destoryLib()
+        result("success")
+    } else {
         result(FlutterMethodNotImplemented)
     }
 
