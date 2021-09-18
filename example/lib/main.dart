@@ -8,10 +8,10 @@ import 'package:flutter_ys7/flutter_ys7.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
 // 萤石云参数
-String appKey = 'xxx';
-String accessToken = 'xxx';
-String deviceSerial = 'xxx';
-String verifyCode = 'xxx';
+String appKey = 'fe83f39646a04fb5ba3688379742fda5';
+String accessToken = 'at.0mos6obv9ynnkniz4swy9ds76blj6ibj-5mmjrl3hju-1iv94zx-payznovek';
+String deviceSerial = 'G19128980';
+String verifyCode = 'VQXOBH';
 int cameraNo = 1;
 
 class MyButton1 extends StatelessWidget {
@@ -314,6 +314,11 @@ class _MyViewState extends State<MyView> {
               MyButton2(
                 onTapAction: (str) async {
                   var request = new Ys7VideoRequestEntity();
+                  request.cameraNo = 1;
+                  request.deviceSerial = deviceSerial;
+                  request.verifyCode = verifyCode;
+                  request.startTime = 1630368000000;
+                  request.endTime = 1630425600000;
 
                   FlutterYs7.queryPlayback(request,(data) {
                     print("hello world");
