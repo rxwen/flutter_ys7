@@ -166,6 +166,15 @@ public class FlutterYs7View implements PlatformView, MethodChannel.MethodCallHan
             ezPlayer.stopPlayback(); // 停止回放
             result.success("success");
         }
+        else if (call.method.equals("sound")) {
+            Boolean bool = call.argument("Sound");
+            if(bool) {
+                ezPlayer.openSound();
+            } else {
+                ezPlayer.closeSound();
+            }
+            result.success("success");
+        }
         else if (call.method.equals("getOSDTime")) {
             Calendar osdTime = ezPlayer.getOSDTime();
             if(null != osdTime){

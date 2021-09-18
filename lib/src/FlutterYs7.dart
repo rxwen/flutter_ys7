@@ -53,39 +53,6 @@ class FlutterYs7 {
     });
   }
 
-  //  *  @param token AccessToken
-  //  *  @param deviceSerial 设备序列号
-  //  *  @param verifyCode   密码
-  //  *  @param cameraNO   通道
-  static Future<bool> startVideo4(String token, String deviceSerial,
-      String verifyCode, int cameraNO) async {
-    var result = await _channel.invokeMethod("start", {
-      'token': token,
-      'deviceSerial': deviceSerial,
-      'cameraNo': cameraNO,
-      'verifyCode': verifyCode
-    });
-
-    return true;
-  }
-
-  //  *  @param token AccessToken
-  //  *  @param deviceSerial 设备序列号
-  //  *  @param verifyCode   密码
-  static Future<bool> startVideo3(
-      String token, String deviceSerial, String verifyCode) async {
-    return await startVideo4(token, deviceSerial, verifyCode, 1);
-  }
-
-  //  *  @param token AccessToken
-  //  *  @param deviceSerial 设备序列号
-  static Future<bool> startVideo2(
-    String token,
-    String deviceSerial,
-  ) async {
-    return await startVideo4(token, deviceSerial, '', 1);
-  }
-
   //  *  @param appKey 账号appKey
   static Future<bool> initSdk(String appKey) async {
     FlutterYs7.initMessageHandler();
@@ -95,7 +62,7 @@ class FlutterYs7 {
     return true;
   }
 
-  static Future<bool> destoryLib(String appKey) async {
+  static Future<bool> destoryLib() async {
     var result = await _plugin_channel.invokeMethod("destoryLib");
     return true;
   }
@@ -121,7 +88,7 @@ class FlutterYs7 {
   }
 
   // 释放
-  static Future<bool> release() async {
+  static Future<bool> videoRelease() async {
     var result = await _channel.invokeMethod("release",);
     return true;
   }
