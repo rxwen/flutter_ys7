@@ -188,24 +188,6 @@ public class MainActivity extends FlutterActivity {
 
 ```dart
 // 详情见example/lib/main.dart
-
-onTap: () async {
-
-// sdk只需要初始化一次
-await FlutterYs7.initSdk("appkey");
-
-//   'deviceSerial': '设备序列号',
-//   'cameraNo': 1,
-//   'verifyCode': "passworld"
-
-var result = await FlutterYs7.startVideo3(
-'AccessToken',
-'设备序列号',
-'passworld'
-);
-print(result);
-
-}
-
+// 手势监听使用 Listener
 ```
 

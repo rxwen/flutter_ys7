@@ -25,14 +25,10 @@ class MyButton1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () async {
-        // print('MyButton was tapped!');
-        if (onTapAction != null) {
-          onTapAction('myButton was hello world');
-        }
-      },
-      onTapDown: (tapDown) {
+    // GestureDetector手势识别 up 事件有时候会不触发
+    // 如果手指不是在 GestureDetector widget 上抬起，那么不会触发up事件
+    return Listener(
+      onPointerDown: (tapDown) {
         print('MyButton was onTapDown!');
         var requestData = new YS7PtzRequestEntity(
           accessToken: accessToken,
@@ -45,7 +41,10 @@ class MyButton1 extends StatelessWidget {
           print("onTapDown $res");
         });
       },
-      onTapUp: (tapUp) {
+      onPointerUp: (tapUp) {
+        if (onTapAction != null) {
+          onTapAction('myButton was hello world');
+        }
         print('MyButton was onTapUp!');
         var requestData = new YS7PtzRequestEntity(
           accessToken: accessToken,
