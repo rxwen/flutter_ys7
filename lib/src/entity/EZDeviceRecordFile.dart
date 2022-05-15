@@ -4,14 +4,17 @@ class EZDeviceRecordFile {
   String end;
   int type;
 
-  EZDeviceRecordFile({this.begin, this.cameraType, this.end, this.type});
+  EZDeviceRecordFile(
+      {required this.begin,
+      required this.cameraType,
+      required this.end,
+      required this.type});
 
-  EZDeviceRecordFile.fromJson(Map<String, dynamic> json) {
-    begin = json['begin'];
-    cameraType = json['cameraType'];
-    end = json['end'];
-    type = json['type'];
-  }
+  EZDeviceRecordFile.fromJson(Map<String, dynamic> json)
+      : begin = json['begin'],
+        cameraType = json['cameraType'],
+        end = json['end'],
+        type = json['type'];
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();

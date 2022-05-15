@@ -11,27 +11,26 @@ class YS7PtzRequestEntity {
   int index;
 
   YS7PtzRequestEntity(
-      {this.accessToken,
-        this.deviceSerial,
-        this.validateCode,
-        this.ipcSerial,
-        this.channelNo,
-        this.direction,
-        this.speed,
-        this.command,
-        this.index});
+      {required this.accessToken,
+      required this.deviceSerial,
+      required this.validateCode,
+      required this.ipcSerial,
+      required this.channelNo,
+      required this.direction,
+      required this.speed,
+      required this.command,
+      required this.index});
 
-  YS7PtzRequestEntity.fromJson(Map<String, dynamic> json) {
-    accessToken = json['accessToken'];
-    deviceSerial = json['deviceSerial'];
-    validateCode = json['validateCode'];
-    ipcSerial = json['ipcSerial'];
-    channelNo = json['channelNo'];
-    direction = json['direction'];
-    speed = json['speed'];
-    command = json['command'];
-    index = json['index'];
-  }
+  YS7PtzRequestEntity.fromJson(Map<String, dynamic> json)
+      : accessToken = json['accessToken'],
+        deviceSerial = json['deviceSerial'],
+        validateCode = json['validateCode'],
+        ipcSerial = json['ipcSerial'],
+        channelNo = json['channelNo'],
+        direction = json['direction'],
+        speed = json['speed'],
+        command = json['command'],
+        index = json['index'];
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
@@ -53,19 +52,17 @@ class YS7ResponseEntity {
   String code;
   String msg;
 
-  YS7ResponseEntity({this.data, this.code, this.msg});
+  YS7ResponseEntity(
+      {required this.data, required this.code, required this.msg});
 
-  YS7ResponseEntity.fromJson(Map<String, dynamic> json) {
-    data = json['data'] != null ? new YS7ResponseDataEntity.fromJson(json['data']) : null;
-    code = json['code'];
-    msg = json['msg'];
-  }
+  YS7ResponseEntity.fromJson(Map<String, dynamic> json)
+      : data = new YS7ResponseDataEntity.fromJson(json['data']),
+        code = json['code'],
+        msg = json['msg'];
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.data != null) {
-      data['data'] = this.data.toJson();
-    }
+    data['data'] = this.data.toJson();
     data['code'] = this.code;
     data['msg'] = this.msg;
     return data;
@@ -108,79 +105,80 @@ class YS7ResponseDataEntity {
   int index;
 
   YS7ResponseDataEntity(
-      {this.supportCloud,
-        this.supportIntelligentTrack,
-        this.supportP2pMode,
-        this.supportResolution,
-        this.supportTalk,
-        this.videoQualityCapacity,
-        this.supportWifiUserId,
-        this.supportRemoteAuthRandcode,
-        this.supportUpgrade,
-        this.supportSmartWifi,
-        this.supportSsl,
-        this.supportWeixin,
-        this.ptzCloseScene,
-        this.supportPresetAlarm,
-        this.supportRelatedDevice,
-        this.supportMessage,
-        this.ptzPreset,
-        this.supportWifi,
-        this.supportCloudVersion,
-        this.ptzCenterMirror,
-        this.supportDefence,
-        this.ptzTopBottom,
-        this.supportFullscreenPtz,
-        this.supportDefenceplan,
-        this.supportDisk,
-        this.supportAlarmVoice,
-        this.ptzLeftRight,
-        this.supportModifyPwd,
-        this.supportCapture,
-        this.supportPrivacy,
-        this.supportEncrypt,
-        this.supportAutoOffline,
-        this.index});
+      {required this.supportCloud,
+      required this.supportIntelligentTrack,
+      required this.supportP2pMode,
+      required this.supportResolution,
+      required this.supportTalk,
+      required this.videoQualityCapacity,
+      required this.supportWifiUserId,
+      required this.supportRemoteAuthRandcode,
+      required this.supportUpgrade,
+      required this.supportSmartWifi,
+      required this.supportSsl,
+      required this.supportWeixin,
+      required this.ptzCloseScene,
+      required this.supportPresetAlarm,
+      required this.supportRelatedDevice,
+      required this.supportMessage,
+      required this.ptzPreset,
+      required this.supportWifi,
+      required this.supportCloudVersion,
+      required this.ptzCenterMirror,
+      required this.supportDefence,
+      required this.ptzTopBottom,
+      required this.supportFullscreenPtz,
+      required this.supportDefenceplan,
+      required this.supportDisk,
+      required this.supportAlarmVoice,
+      required this.ptzLeftRight,
+      required this.supportModifyPwd,
+      required this.supportCapture,
+      required this.supportPrivacy,
+      required this.supportEncrypt,
+      required this.supportAutoOffline,
+      required this.index});
 
-  YS7ResponseDataEntity.fromJson(Map<String, dynamic> json) {
-    supportCloud = json['support_cloud'];
-    supportIntelligentTrack = json['support_intelligent_track'];
-    supportP2pMode = json['support_p2p_mode'];
-    supportResolution = json['support_resolution'];
-    supportTalk = json['support_talk'];
+  YS7ResponseDataEntity.fromJson(Map<String, dynamic> json)
+      : supportCloud = json['support_cloud'],
+        supportIntelligentTrack = json['support_intelligent_track'],
+        supportP2pMode = json['support_p2p_mode'],
+        supportResolution = json['support_resolution'],
+        supportTalk = json['support_talk'],
+        supportWifiUserId = json['support_wifi_userId'],
+        supportRemoteAuthRandcode = json['support_remote_auth_randcode'],
+        supportUpgrade = json['support_upgrade'],
+        supportSmartWifi = json['support_smart_wifi'],
+        supportSsl = json['support_ssl'],
+        supportWeixin = json['support_weixin'],
+        ptzCloseScene = json['ptz_close_scene'],
+        supportPresetAlarm = json['support_preset_alarm'],
+        supportRelatedDevice = json['support_related_device'],
+        supportMessage = json['support_message'],
+        ptzPreset = json['ptz_preset'],
+        supportWifi = json['support_wifi'],
+        supportCloudVersion = json['support_cloud_version'],
+        ptzCenterMirror = json['ptz_center_mirror'],
+        supportDefence = json['support_defence'],
+        ptzTopBottom = json['ptz_top_bottom'],
+        supportFullscreenPtz = json['support_fullscreen_ptz'],
+        supportDefenceplan = json['support_defenceplan'],
+        supportDisk = json['support_disk'],
+        supportAlarmVoice = json['support_alarm_voice'],
+        ptzLeftRight = json['ptz_left_right'],
+        supportModifyPwd = json['support_modify_pwd'],
+        supportCapture = json['support_capture'],
+        supportPrivacy = json['support_privacy'],
+        supportEncrypt = json['support_encrypt'],
+        supportAutoOffline = json['support_auto_offline'],
+        index = json['index'],
+        videoQualityCapacity = [] {
     if (json['video_quality_capacity'] != null) {
-      videoQualityCapacity = new List<VideoQualityCapacity>();
+      // videoQualityCapacity = new List<VideoQualityCapacity>();
       json['video_quality_capacity'].forEach((v) {
         videoQualityCapacity.add(new VideoQualityCapacity.fromJson(v));
       });
     }
-    supportWifiUserId = json['support_wifi_userId'];
-    supportRemoteAuthRandcode = json['support_remote_auth_randcode'];
-    supportUpgrade = json['support_upgrade'];
-    supportSmartWifi = json['support_smart_wifi'];
-    supportSsl = json['support_ssl'];
-    supportWeixin = json['support_weixin'];
-    ptzCloseScene = json['ptz_close_scene'];
-    supportPresetAlarm = json['support_preset_alarm'];
-    supportRelatedDevice = json['support_related_device'];
-    supportMessage = json['support_message'];
-    ptzPreset = json['ptz_preset'];
-    supportWifi = json['support_wifi'];
-    supportCloudVersion = json['support_cloud_version'];
-    ptzCenterMirror = json['ptz_center_mirror'];
-    supportDefence = json['support_defence'];
-    ptzTopBottom = json['ptz_top_bottom'];
-    supportFullscreenPtz = json['support_fullscreen_ptz'];
-    supportDefenceplan = json['support_defenceplan'];
-    supportDisk = json['support_disk'];
-    supportAlarmVoice = json['support_alarm_voice'];
-    ptzLeftRight = json['ptz_left_right'];
-    supportModifyPwd = json['support_modify_pwd'];
-    supportCapture = json['support_capture'];
-    supportPrivacy = json['support_privacy'];
-    supportEncrypt = json['support_encrypt'];
-    supportAutoOffline = json['support_auto_offline'];
-    index = json['index'];
   }
 
   Map<String, dynamic> toJson() {
@@ -190,10 +188,8 @@ class YS7ResponseDataEntity {
     data['support_p2p_mode'] = this.supportP2pMode;
     data['support_resolution'] = this.supportResolution;
     data['support_talk'] = this.supportTalk;
-    if (this.videoQualityCapacity != null) {
-      data['video_quality_capacity'] =
-          this.videoQualityCapacity.map((v) => v.toJson()).toList();
-    }
+    data['video_quality_capacity'] =
+        this.videoQualityCapacity.map((v) => v.toJson()).toList();
     data['support_wifi_userId'] = this.supportWifiUserId;
     data['support_remote_auth_randcode'] = this.supportRemoteAuthRandcode;
     data['support_upgrade'] = this.supportUpgrade;
@@ -233,19 +229,18 @@ class VideoQualityCapacity {
   String maxBitRate;
 
   VideoQualityCapacity(
-      {this.streamType,
-        this.videoLevel,
-        this.resolution,
-        this.videoBitRate,
-        this.maxBitRate});
+      {required this.streamType,
+      required this.videoLevel,
+      required this.resolution,
+      required this.videoBitRate,
+      required this.maxBitRate});
 
-  VideoQualityCapacity.fromJson(Map<String, dynamic> json) {
-    streamType = json['streamType'];
-    videoLevel = json['videoLevel'];
-    resolution = json['resolution'];
-    videoBitRate = json['videoBitRate'];
-    maxBitRate = json['maxBitRate'];
-  }
+  VideoQualityCapacity.fromJson(Map<String, dynamic> json)
+      : streamType = json['streamType'],
+        videoLevel = json['videoLevel'],
+        resolution = json['resolution'],
+        videoBitRate = json['videoBitRate'],
+        maxBitRate = json['maxBitRate'];
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();

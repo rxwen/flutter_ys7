@@ -1,17 +1,6 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 
 import 'package:flutter_ys7/src/entity/Ys7PtzRequestEntity.dart';
-
-void getHttp() async {
-  try {
-    Response response = await Dio().get("http://www.google.com");
-    print(response);
-  } catch (e) {
-    print(e);
-  }
-}
 
 // api文档： http://open.ys7.com/doc/zh/book/index/device_ptz.html#device_ptz-api1
 
@@ -51,7 +40,7 @@ class FlutterYs7HttpApi {
       "deviceSerial": requestEntity.deviceSerial,
       "channelNo": requestEntity.channelNo,
       "direction": requestEntity.direction,
-      "speed": requestEntity.speed != null ? requestEntity.speed : 1,
+      "speed": requestEntity.speed,
     });
 
     try {
@@ -76,11 +65,15 @@ class FlutterYs7HttpApi {
         });
       }
     } catch (e) {
-      print(e);
+      return YS7ResponseEntity.fromJson({
+        "code": 500,
+        "msg": e.toString(),
+      });
     }
   }
 
-  static Future<YS7ResponseEntity> device_ptz_stop(YS7PtzRequestEntity requestEntity) async {
+  static Future<YS7ResponseEntity> device_ptz_stop(
+      YS7PtzRequestEntity requestEntity) async {
     FormData formData = new FormData.fromMap({
       "accessToken": requestEntity.accessToken,
       "deviceSerial": requestEntity.deviceSerial,
@@ -92,7 +85,8 @@ class FlutterYs7HttpApi {
       Response response =
           await Dio().post(POST_DEVICE_PTZ_STOP, data: formData);
       if (response.statusCode == 200) {
-        YS7ResponseEntity responseData = YS7ResponseEntity.fromJson(response.data);
+        YS7ResponseEntity responseData =
+            YS7ResponseEntity.fromJson(response.data);
         print(response);
         return responseData;
       } else {
@@ -104,10 +98,14 @@ class FlutterYs7HttpApi {
       }
     } catch (e) {
       print(e);
+      return YS7ResponseEntity.fromJson({
+        "code": 500,
+        "msg": e.toString(),
+      });
     }
   }
 
-  static Future<bool> device_capacity(YS7PtzRequestEntity requestEntity) async{
+  static Future<bool> device_capacity(YS7PtzRequestEntity requestEntity) async {
     FormData formData = new FormData.fromMap({
       "accessToken": requestEntity.accessToken,
       "deviceSerial": requestEntity.deviceSerial,
@@ -115,9 +113,10 @@ class FlutterYs7HttpApi {
 
     try {
       Response response =
-      await Dio().post(POST_DEVICE_CAPACITY, data: formData);
+          await Dio().post(POST_DEVICE_CAPACITY, data: formData);
       if (response.statusCode == 200) {
-        YS7ResponseEntity responseData = YS7ResponseEntity.fromJson(response.data);
+        YS7ResponseEntity responseData =
+            YS7ResponseEntity.fromJson(response.data);
         print(response);
         if (Comparable.compare(responseData.code, "200") == 0) {
           // == 1 大于 "200"  == -1 小于 "200"
@@ -128,10 +127,11 @@ class FlutterYs7HttpApi {
       return false;
     } catch (e) {
       print(e);
+      return false;
     }
   }
 
-  static Future<bool> device_add(YS7PtzRequestEntity requestEntity) async{
+  static Future<bool> device_add(YS7PtzRequestEntity requestEntity) async {
     FormData formData = new FormData.fromMap({
       "accessToken": requestEntity.accessToken,
       "deviceSerial": requestEntity.deviceSerial,
@@ -139,10 +139,11 @@ class FlutterYs7HttpApi {
     });
 
     try {
-      Response response =
-      await Dio().post("https://open.ys7.com/api/lapp/device/add", data: formData);
+      Response response = await Dio()
+          .post("https://open.ys7.com/api/lapp/device/add", data: formData);
       if (response.statusCode == 200) {
-        YS7ResponseEntity responseData = YS7ResponseEntity.fromJson(response.data);
+        YS7ResponseEntity responseData =
+            YS7ResponseEntity.fromJson(response.data);
         print(response);
         if (Comparable.compare(responseData.code, "200") == 0) {
           // == 1 大于 "200"  == -1 小于 "200"
@@ -153,20 +154,22 @@ class FlutterYs7HttpApi {
       return false;
     } catch (e) {
       print(e);
+      return false;
     }
   }
 
-  static Future<bool> device_delete(YS7PtzRequestEntity requestEntity) async{
+  static Future<bool> device_delete(YS7PtzRequestEntity requestEntity) async {
     FormData formData = new FormData.fromMap({
       "accessToken": requestEntity.accessToken,
       "deviceSerial": requestEntity.deviceSerial,
     });
 
     try {
-      Response response =
-      await Dio().post("https://open.ys7.com/api/lapp/device/delete", data: formData);
+      Response response = await Dio()
+          .post("https://open.ys7.com/api/lapp/device/delete", data: formData);
       if (response.statusCode == 200) {
-        YS7ResponseEntity responseData = YS7ResponseEntity.fromJson(response.data);
+        YS7ResponseEntity responseData =
+            YS7ResponseEntity.fromJson(response.data);
         print(response);
         if (Comparable.compare(responseData.code, "200") == 0) {
           // == 1 大于 "200"  == -1 小于 "200"
@@ -177,10 +180,11 @@ class FlutterYs7HttpApi {
       return false;
     } catch (e) {
       print(e);
+      return false;
     }
   }
 
-  static Future<bool> device_ipc_add(YS7PtzRequestEntity requestEntity) async{
+  static Future<bool> device_ipc_add(YS7PtzRequestEntity requestEntity) async {
     FormData formData = new FormData.fromMap({
       "accessToken": requestEntity.accessToken,
       "deviceSerial": requestEntity.deviceSerial,
@@ -190,10 +194,11 @@ class FlutterYs7HttpApi {
     });
 
     try {
-      Response response =
-      await Dio().post("https://open.ys7.com/api/lapp/device/ipc/add", data: formData);
+      Response response = await Dio()
+          .post("https://open.ys7.com/api/lapp/device/ipc/add", data: formData);
       if (response.statusCode == 200) {
-        YS7ResponseEntity responseData = YS7ResponseEntity.fromJson(response.data);
+        YS7ResponseEntity responseData =
+            YS7ResponseEntity.fromJson(response.data);
         print(response);
         if (Comparable.compare(responseData.code, "200") == 0) {
           // == 1 大于 "200"  == -1 小于 "200"
@@ -204,10 +209,12 @@ class FlutterYs7HttpApi {
       return false;
     } catch (e) {
       print(e);
+      return false;
     }
   }
 
-  static Future<bool> device_ipc_delete(YS7PtzRequestEntity requestEntity) async{
+  static Future<bool> device_ipc_delete(
+      YS7PtzRequestEntity requestEntity) async {
     FormData formData = new FormData.fromMap({
       "accessToken": requestEntity.accessToken,
       "deviceSerial": requestEntity.deviceSerial,
@@ -217,10 +224,12 @@ class FlutterYs7HttpApi {
     });
 
     try {
-      Response response =
-      await Dio().post("https://open.ys7.com/api/lapp/device/ipc/delete", data: formData);
+      Response response = await Dio().post(
+          "https://open.ys7.com/api/lapp/device/ipc/delete",
+          data: formData);
       if (response.statusCode == 200) {
-        YS7ResponseEntity responseData = YS7ResponseEntity.fromJson(response.data);
+        YS7ResponseEntity responseData =
+            YS7ResponseEntity.fromJson(response.data);
         print(response);
         if (Comparable.compare(responseData.code, "200") == 0) {
           // == 1 大于 "200"  == -1 小于 "200"
@@ -231,6 +240,7 @@ class FlutterYs7HttpApi {
       return false;
     } catch (e) {
       print(e);
+      return false;
     }
   }
 }

@@ -4,7 +4,7 @@ version: 0.2.6
 homepage: https://gitee.com/isCZW/flutter_ys7
 repository: https://gitee.com/isCZW/flutter_ys7
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.12.0 <3.0.0"
   flutter: ">=1.20.0"
 
 dependencies:
