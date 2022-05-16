@@ -1,16 +1,13 @@
-
-
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class Ys7VideoView extends StatelessWidget  {
+class Ys7VideoView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    if(Platform.isIOS) {
+    if (Platform.isIOS) {
       return Container(
         decoration: new BoxDecoration(
           color: Colors.black,
@@ -25,7 +22,5 @@ class Ys7VideoView extends StatelessWidget  {
     } else {
       throw UnimplementedError();
     }
-
   }
-
 }

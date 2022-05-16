@@ -1,16 +1,16 @@
 class Ys7VideoRequestEntity {
-  int startTime;
-  int endTime;
-  String deviceSerial;
-  String verifyCode;
-  int cameraNo;
+  int? startTime;
+  int? endTime;
+  String? deviceSerial;
+  String? verifyCode;
+  int? cameraNo;
 
   Ys7VideoRequestEntity(
       {this.startTime,
-        this.endTime,
-        this.deviceSerial,
-        this.verifyCode,
-        this.cameraNo});
+      this.endTime,
+      this.deviceSerial,
+      this.verifyCode,
+      this.cameraNo});
 
   Ys7VideoRequestEntity.fromJson(Map<String, dynamic> json) {
     startTime = json['startTime'];

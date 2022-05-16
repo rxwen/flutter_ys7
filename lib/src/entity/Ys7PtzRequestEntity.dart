@@ -1,25 +1,25 @@
 // entity
 class YS7PtzRequestEntity {
-  String accessToken;
-  String deviceSerial;
-  String validateCode;
-  String ipcSerial;
-  int channelNo;
-  int direction;
-  int speed;
-  int command;
-  int index;
+  String? accessToken;
+  String? deviceSerial;
+  String? validateCode;
+  String? ipcSerial;
+  int? channelNo;
+  int? direction;
+  int? speed;
+  int? command;
+  int? index;
 
   YS7PtzRequestEntity(
       {this.accessToken,
-        this.deviceSerial,
-        this.validateCode,
-        this.ipcSerial,
-        this.channelNo,
-        this.direction,
-        this.speed,
-        this.command,
-        this.index});
+      this.deviceSerial,
+      this.validateCode,
+      this.ipcSerial,
+      this.channelNo,
+      this.direction,
+      this.speed,
+      this.command,
+      this.index});
 
   YS7PtzRequestEntity.fromJson(Map<String, dynamic> json) {
     accessToken = json['accessToken'];
@@ -49,14 +49,16 @@ class YS7PtzRequestEntity {
 }
 
 class YS7ResponseEntity {
-  YS7ResponseDataEntity data;
-  String code;
-  String msg;
+  YS7ResponseDataEntity? data;
+  String? code;
+  String? msg;
 
   YS7ResponseEntity({this.data, this.code, this.msg});
 
   YS7ResponseEntity.fromJson(Map<String, dynamic> json) {
-    data = json['data'] != null ? new YS7ResponseDataEntity.fromJson(json['data']) : null;
+    data = json['data'] != null
+        ? new YS7ResponseDataEntity.fromJson(json['data'])
+        : null;
     code = json['code'];
     msg = json['msg'];
   }
@@ -64,7 +66,7 @@ class YS7ResponseEntity {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.data != null) {
-      data['data'] = this.data.toJson();
+      data['data'] = this.data!.toJson();
     }
     data['code'] = this.code;
     data['msg'] = this.msg;
@@ -73,74 +75,74 @@ class YS7ResponseEntity {
 }
 
 class YS7ResponseDataEntity {
-  String supportCloud;
-  String supportIntelligentTrack;
-  String supportP2pMode;
-  String supportResolution;
-  String supportTalk;
-  List<VideoQualityCapacity> videoQualityCapacity;
-  String supportWifiUserId;
-  String supportRemoteAuthRandcode;
-  String supportUpgrade;
-  String supportSmartWifi;
-  String supportSsl;
-  String supportWeixin;
-  String ptzCloseScene;
-  String supportPresetAlarm;
-  String supportRelatedDevice;
-  String supportMessage;
-  String ptzPreset;
-  String supportWifi;
-  String supportCloudVersion;
-  String ptzCenterMirror;
-  String supportDefence;
-  String ptzTopBottom;
-  String supportFullscreenPtz;
-  String supportDefenceplan;
-  String supportDisk;
-  String supportAlarmVoice;
-  String ptzLeftRight;
-  String supportModifyPwd;
-  String supportCapture;
-  String supportPrivacy;
-  String supportEncrypt;
-  String supportAutoOffline;
-  int index;
+  String? supportCloud;
+  String? supportIntelligentTrack;
+  String? supportP2pMode;
+  String? supportResolution;
+  String? supportTalk;
+  List<VideoQualityCapacity>? videoQualityCapacity;
+  String? supportWifiUserId;
+  String? supportRemoteAuthRandcode;
+  String? supportUpgrade;
+  String? supportSmartWifi;
+  String? supportSsl;
+  String? supportWeixin;
+  String? ptzCloseScene;
+  String? supportPresetAlarm;
+  String? supportRelatedDevice;
+  String? supportMessage;
+  String? ptzPreset;
+  String? supportWifi;
+  String? supportCloudVersion;
+  String? ptzCenterMirror;
+  String? supportDefence;
+  String? ptzTopBottom;
+  String? supportFullscreenPtz;
+  String? supportDefenceplan;
+  String? supportDisk;
+  String? supportAlarmVoice;
+  String? ptzLeftRight;
+  String? supportModifyPwd;
+  String? supportCapture;
+  String? supportPrivacy;
+  String? supportEncrypt;
+  String? supportAutoOffline;
+  int? index;
 
   YS7ResponseDataEntity(
       {this.supportCloud,
-        this.supportIntelligentTrack,
-        this.supportP2pMode,
-        this.supportResolution,
-        this.supportTalk,
-        this.videoQualityCapacity,
-        this.supportWifiUserId,
-        this.supportRemoteAuthRandcode,
-        this.supportUpgrade,
-        this.supportSmartWifi,
-        this.supportSsl,
-        this.supportWeixin,
-        this.ptzCloseScene,
-        this.supportPresetAlarm,
-        this.supportRelatedDevice,
-        this.supportMessage,
-        this.ptzPreset,
-        this.supportWifi,
-        this.supportCloudVersion,
-        this.ptzCenterMirror,
-        this.supportDefence,
-        this.ptzTopBottom,
-        this.supportFullscreenPtz,
-        this.supportDefenceplan,
-        this.supportDisk,
-        this.supportAlarmVoice,
-        this.ptzLeftRight,
-        this.supportModifyPwd,
-        this.supportCapture,
-        this.supportPrivacy,
-        this.supportEncrypt,
-        this.supportAutoOffline,
-        this.index});
+      this.supportIntelligentTrack,
+      this.supportP2pMode,
+      this.supportResolution,
+      this.supportTalk,
+      this.videoQualityCapacity,
+      this.supportWifiUserId,
+      this.supportRemoteAuthRandcode,
+      this.supportUpgrade,
+      this.supportSmartWifi,
+      this.supportSsl,
+      this.supportWeixin,
+      this.ptzCloseScene,
+      this.supportPresetAlarm,
+      this.supportRelatedDevice,
+      this.supportMessage,
+      this.ptzPreset,
+      this.supportWifi,
+      this.supportCloudVersion,
+      this.ptzCenterMirror,
+      this.supportDefence,
+      this.ptzTopBottom,
+      this.supportFullscreenPtz,
+      this.supportDefenceplan,
+      this.supportDisk,
+      this.supportAlarmVoice,
+      this.ptzLeftRight,
+      this.supportModifyPwd,
+      this.supportCapture,
+      this.supportPrivacy,
+      this.supportEncrypt,
+      this.supportAutoOffline,
+      this.index});
 
   YS7ResponseDataEntity.fromJson(Map<String, dynamic> json) {
     supportCloud = json['support_cloud'];
@@ -149,9 +151,9 @@ class YS7ResponseDataEntity {
     supportResolution = json['support_resolution'];
     supportTalk = json['support_talk'];
     if (json['video_quality_capacity'] != null) {
-      videoQualityCapacity = new List<VideoQualityCapacity>();
+      videoQualityCapacity = [];
       json['video_quality_capacity'].forEach((v) {
-        videoQualityCapacity.add(new VideoQualityCapacity.fromJson(v));
+        videoQualityCapacity!.add(new VideoQualityCapacity.fromJson(v));
       });
     }
     supportWifiUserId = json['support_wifi_userId'];
@@ -191,8 +193,8 @@ class YS7ResponseDataEntity {
     data['support_resolution'] = this.supportResolution;
     data['support_talk'] = this.supportTalk;
     if (this.videoQualityCapacity != null) {
-      data['video_quality_capacity'] =
-          this.videoQualityCapacity.map((v) => v.toJson()).toList();
+      // data['video_quality_capacity'] =
+      //     this.videoQualityCapacity.map((v) => v.toJson()).toList();
     }
     data['support_wifi_userId'] = this.supportWifiUserId;
     data['support_remote_auth_randcode'] = this.supportRemoteAuthRandcode;
@@ -226,18 +228,18 @@ class YS7ResponseDataEntity {
 }
 
 class VideoQualityCapacity {
-  String streamType;
-  String videoLevel;
-  String resolution;
-  String videoBitRate;
-  String maxBitRate;
+  String? streamType;
+  String? videoLevel;
+  String? resolution;
+  String? videoBitRate;
+  String? maxBitRate;
 
   VideoQualityCapacity(
       {this.streamType,
-        this.videoLevel,
-        this.resolution,
-        this.videoBitRate,
-        this.maxBitRate});
+      this.videoLevel,
+      this.resolution,
+      this.videoBitRate,
+      this.maxBitRate});
 
   VideoQualityCapacity.fromJson(Map<String, dynamic> json) {
     streamType = json['streamType'];
@@ -257,8 +259,6 @@ class VideoQualityCapacity {
     return data;
   }
 }
-
-
 
 /*
 {
