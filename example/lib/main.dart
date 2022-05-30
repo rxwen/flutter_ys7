@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_ys7/flutter_ys7.dart';
 
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
@@ -37,7 +36,7 @@ class MyButton1 extends StatelessWidget {
           direction: this.direction,
           speed: 1,
         );
-        FlutterYs7.ptzStart(requestData).then((res){
+        FlutterYs7.ptzStart(requestData).then((res) {
           print("onTapDown $res");
         });
       },
@@ -53,7 +52,7 @@ class MyButton1 extends StatelessWidget {
           direction: this.direction,
           speed: 1,
         );
-        FlutterYs7.ptzStop(requestData).then((res){
+        FlutterYs7.ptzStop(requestData).then((res) {
           print("onTapUp $res");
         });
       },
@@ -63,11 +62,12 @@ class MyButton1 extends StatelessWidget {
 }
 
 class MyButton2 extends StatelessWidget {
-  const MyButton2({this.contentWidget,
-    this.onTapAction,
-    Key key,
-    this.onTapDown,
-    this.onTapUp})
+  const MyButton2(
+      {this.contentWidget,
+      this.onTapAction,
+      Key key,
+      this.onTapDown,
+      this.onTapUp})
       : super(key: key);
 
   final Widget contentWidget;
@@ -102,7 +102,6 @@ class MyButton2 extends StatelessWidget {
 class MyView extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return _MyViewState();
   }
 
@@ -112,8 +111,6 @@ class MyView extends StatefulWidget {
 }
 
 class _MyViewState extends State<MyView> {
-
-
   //
   String backTime = 'xx';
   int backTimeTmp = 0;
@@ -141,7 +138,7 @@ class _MyViewState extends State<MyView> {
                   height: 50.0,
                   padding: const EdgeInsets.all(8.0),
                   margin:
-                  const EdgeInsets.symmetric(horizontal: 3.0, vertical: 3),
+                      const EdgeInsets.symmetric(horizontal: 3.0, vertical: 3),
                   decoration: BoxDecoration(color: Colors.blue),
                   child: const Center(
                     child: Text('INIT SDK'),
@@ -157,7 +154,7 @@ class _MyViewState extends State<MyView> {
                   height: 50.0,
                   padding: const EdgeInsets.all(8.0),
                   margin:
-                  const EdgeInsets.symmetric(horizontal: 3.0, vertical: 3),
+                      const EdgeInsets.symmetric(horizontal: 3.0, vertical: 3),
                   decoration: BoxDecoration(color: Colors.blue),
                   child: const Center(
                     child: Text('初始化播放器'),
@@ -172,7 +169,7 @@ class _MyViewState extends State<MyView> {
                   height: 50.0,
                   padding: const EdgeInsets.all(8.0),
                   margin:
-                  const EdgeInsets.symmetric(horizontal: 3.0, vertical: 3),
+                      const EdgeInsets.symmetric(horizontal: 3.0, vertical: 3),
                   decoration: BoxDecoration(color: Colors.blue),
                   child: const Center(
                     child: Text('开始直播'),
@@ -187,7 +184,7 @@ class _MyViewState extends State<MyView> {
                   height: 50.0,
                   padding: const EdgeInsets.all(8.0),
                   margin:
-                  const EdgeInsets.symmetric(horizontal: 3.0, vertical: 3),
+                      const EdgeInsets.symmetric(horizontal: 3.0, vertical: 3),
                   decoration: BoxDecoration(color: Colors.blue),
                   child: const Center(
                     child: Text('停止直播'),
@@ -204,7 +201,7 @@ class _MyViewState extends State<MyView> {
                   height: 50.0,
                   padding: const EdgeInsets.all(8.0),
                   margin:
-                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
+                      const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
                   decoration: BoxDecoration(color: Colors.blue),
                   child: const Center(
                     child: Text('云台向上'),
@@ -217,7 +214,7 @@ class _MyViewState extends State<MyView> {
                   height: 50.0,
                   padding: const EdgeInsets.all(8.0),
                   margin:
-                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
+                      const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
                   decoration: BoxDecoration(color: Colors.blue),
                   child: const Center(
                     child: Text('云台向下'),
@@ -230,7 +227,7 @@ class _MyViewState extends State<MyView> {
                   height: 50.0,
                   padding: const EdgeInsets.all(8.0),
                   margin:
-                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
+                      const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
                   decoration: BoxDecoration(color: Colors.blue),
                   child: const Center(
                     child: Text('云台向左'),
@@ -243,7 +240,7 @@ class _MyViewState extends State<MyView> {
                   height: 50.0,
                   padding: const EdgeInsets.all(8.0),
                   margin:
-                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
+                      const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
                   decoration: BoxDecoration(color: Colors.blue),
                   child: const Center(
                     child: Text('云台向右'),
@@ -260,7 +257,7 @@ class _MyViewState extends State<MyView> {
                   height: 50.0,
                   padding: const EdgeInsets.all(8.0),
                   margin:
-                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
+                      const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
                   decoration: BoxDecoration(color: Colors.blue),
                   child: const Center(
                     child: Text('放大'),
@@ -273,7 +270,7 @@ class _MyViewState extends State<MyView> {
                   height: 50.0,
                   padding: const EdgeInsets.all(8.0),
                   margin:
-                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
+                      const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
                   decoration: BoxDecoration(color: Colors.blue),
                   child: const Center(
                     child: Text('缩小'),
@@ -286,7 +283,7 @@ class _MyViewState extends State<MyView> {
                   height: 50.0,
                   padding: const EdgeInsets.all(8.0),
                   margin:
-                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
+                      const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
                   decoration: BoxDecoration(color: Colors.blue),
                   child: const Center(
                     child: Text('近焦距'),
@@ -299,7 +296,7 @@ class _MyViewState extends State<MyView> {
                   height: 50.0,
                   padding: const EdgeInsets.all(8.0),
                   margin:
-                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
+                      const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
                   decoration: BoxDecoration(color: Colors.blue),
                   child: const Center(
                     child: Text('远焦距'),
@@ -319,7 +316,7 @@ class _MyViewState extends State<MyView> {
                   request.startTime = 1630368000000;
                   request.endTime = 1630425600000;
 
-                  FlutterYs7.queryPlayback(request,(data) {
+                  FlutterYs7.queryPlayback(request, (data) {
                     print("hello world");
                   });
                 },
@@ -327,7 +324,7 @@ class _MyViewState extends State<MyView> {
                   height: 50.0,
                   padding: const EdgeInsets.all(8.0),
                   margin:
-                  const EdgeInsets.symmetric(horizontal: 3, vertical: 3),
+                      const EdgeInsets.symmetric(horizontal: 3, vertical: 3),
                   decoration: BoxDecoration(color: Colors.blue),
                   child: const Center(
                     child: Text('查询回放'),
@@ -340,18 +337,16 @@ class _MyViewState extends State<MyView> {
 
                   DatePicker.showDateTimePicker(context,
                       // 是否展示顶部操作按钮
-                      showTitleActions: true,
-                      onChanged: (date) {
-                        // change事件
-                        print('change $date');
-                      },
-                      onConfirm: (DateTime date) async {
-                        // 确定事件
-                        print('confirm $date');
-                        setState(() {
-                          backTime = date.toString().substring(0, 19);
-                        });
-                      },
+                      showTitleActions: true, onChanged: (date) {
+                    // change事件
+                    print('change $date');
+                  }, onConfirm: (DateTime date) async {
+                    // 确定事件
+                    print('confirm $date');
+                    setState(() {
+                      backTime = date.toString().substring(0, 19);
+                    });
+                  },
                       // 当前时间
                       currentTime: DateTime.now(),
                       // 语言
@@ -361,7 +356,7 @@ class _MyViewState extends State<MyView> {
                   height: 50.0,
                   padding: const EdgeInsets.all(8.0),
                   margin:
-                  const EdgeInsets.symmetric(horizontal: 3, vertical: 3),
+                      const EdgeInsets.symmetric(horizontal: 3, vertical: 3),
                   decoration: BoxDecoration(color: Colors.blue),
                   child: const Center(
                     child: Text('选择回放日期时间'),
@@ -377,8 +372,7 @@ class _MyViewState extends State<MyView> {
                 onTapAction: (str) async {
                   DateTime date = DateTime.parse(backTime);
                   var startTime = date.millisecondsSinceEpoch;
-                  var endTime =
-                      date.millisecondsSinceEpoch + (1000 * 60 * 30);
+                  var endTime = date.millisecondsSinceEpoch + (1000 * 60 * 30);
 
                   var videoRequest = new Ys7VideoRequestEntity();
                   // videoRequest.startTime = 1630422000000;
@@ -392,7 +386,7 @@ class _MyViewState extends State<MyView> {
                   height: 50.0,
                   padding: const EdgeInsets.all(8.0),
                   margin:
-                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
+                      const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
                   decoration: BoxDecoration(color: Colors.blue),
                   child: const Center(
                     child: Text('开始回放'),
@@ -410,7 +404,7 @@ class _MyViewState extends State<MyView> {
                   height: 50.0,
                   padding: const EdgeInsets.all(8.0),
                   margin:
-                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
+                      const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
                   decoration: BoxDecoration(color: Colors.blue),
                   child: const Center(
                     child: Text('停止回放'),
@@ -418,67 +412,22 @@ class _MyViewState extends State<MyView> {
                 ),
               ),
               MyButton2(
-                onTapDown: (tapDown)async{
+                onTapDown: (tapDown) async {
                   startPlayTime.cancel();
                   backTimeTmp = DateTime.parse(backTime).millisecondsSinceEpoch;
                   print('当前时间 = $backTimeTmp');
 
                   if (timeId != null) timeId.cancel();
                   timeId = Timer.periodic(const Duration(milliseconds: 100),
-                          (timer) {
-                        backTimeTmp -= 15000;
-                        setState(() {
-                          backTime =
-                              DateTime.fromMillisecondsSinceEpoch(backTimeTmp)
-                                  .toString()
-                                  .substring(0, 19);
-                        });
-                      });
-                },
-                onTapUp: (tapUp)async{
-                  if (timeId != null) {
-                    timeId.cancel();
-                  }
-                  print('当前时间 = $backTimeTmp');
-
-                  await FlutterYs7.stopPlayback();
-
-                  var request = new Ys7VideoRequestEntity();
-                  request.startTime = backTimeTmp;
-                  request.endTime = request.startTime + (1000 * 60 * 30);
-                  FlutterYs7.startPlayback(request);
-                  getplayBackTime();
-                },
-                contentWidget: Container(
-                  height: 50.0,
-                  padding: const EdgeInsets.all(8.0),
-                  margin:
-                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
-                  decoration: BoxDecoration(color: Colors.blue),
-                  child: const Center(
-                    child: Text('快退'),
-                  ),
-                ),
-              ),
-              MyButton2(
-                onTapDown: (tapDown) {
-                  startPlayTime.cancel();
-                  backTimeTmp = DateTime
-                      .parse(backTime)
-                      .millisecondsSinceEpoch;
-                  print('当前时间 = $backTimeTmp');
-
-                  if (timeId != null) timeId.cancel();
-                  timeId = Timer.periodic(const Duration(milliseconds: 100),
-                          (timer) {
-                        backTimeTmp += 15000;
-                        setState(() {
-                          backTime =
-                              DateTime.fromMillisecondsSinceEpoch(backTimeTmp)
-                                  .toString()
-                                  .substring(0, 19);
-                        });
-                      });
+                      (timer) {
+                    backTimeTmp -= 15000;
+                    setState(() {
+                      backTime =
+                          DateTime.fromMillisecondsSinceEpoch(backTimeTmp)
+                              .toString()
+                              .substring(0, 19);
+                    });
+                  });
                 },
                 onTapUp: (tapUp) async {
                   if (timeId != null) {
@@ -498,7 +447,50 @@ class _MyViewState extends State<MyView> {
                   height: 50.0,
                   padding: const EdgeInsets.all(8.0),
                   margin:
-                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
+                      const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
+                  decoration: BoxDecoration(color: Colors.blue),
+                  child: const Center(
+                    child: Text('快退'),
+                  ),
+                ),
+              ),
+              MyButton2(
+                onTapDown: (tapDown) {
+                  startPlayTime.cancel();
+                  backTimeTmp = DateTime.parse(backTime).millisecondsSinceEpoch;
+                  print('当前时间 = $backTimeTmp');
+
+                  if (timeId != null) timeId.cancel();
+                  timeId = Timer.periodic(const Duration(milliseconds: 100),
+                      (timer) {
+                    backTimeTmp += 15000;
+                    setState(() {
+                      backTime =
+                          DateTime.fromMillisecondsSinceEpoch(backTimeTmp)
+                              .toString()
+                              .substring(0, 19);
+                    });
+                  });
+                },
+                onTapUp: (tapUp) async {
+                  if (timeId != null) {
+                    timeId.cancel();
+                  }
+                  print('当前时间 = $backTimeTmp');
+
+                  await FlutterYs7.stopPlayback();
+
+                  var request = new Ys7VideoRequestEntity();
+                  request.startTime = backTimeTmp;
+                  request.endTime = request.startTime + (1000 * 60 * 30);
+                  FlutterYs7.startPlayback(request);
+                  getplayBackTime();
+                },
+                contentWidget: Container(
+                  height: 50.0,
+                  padding: const EdgeInsets.all(8.0),
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
                   decoration: BoxDecoration(color: Colors.blue),
                   child: const Center(
                     child: Text('快进'),
@@ -513,7 +505,7 @@ class _MyViewState extends State<MyView> {
   }
 
   void getplayBackTime() {
-    if(Platform.isIOS){
+    if (Platform.isIOS) {
       return;
     }
     if (startPlayTime != null) {

@@ -16,7 +16,6 @@ class FlutterYs7 {
   static Map<int, Function> _callBackFuncMap = Map();
 
   static void initMessageHandler() {
-    // ignore: missing_return
     _native_ys7.setMessageHandler((dynamic str) {
       Map<String, dynamic> data = json.decode(str);
 
