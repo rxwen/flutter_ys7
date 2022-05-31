@@ -16,10 +16,10 @@ dependencies:
   flutter_ys7:
     # When depending on this package from a real application you should use:
     #   flutter_ys7: ^x.y.z
-    # git:
-    #    url: https://github.com/rxwen/flutter_ys7.git
-    #    ref: main
-    path: ../
+    git:
+       url: https://github.com/rxwen/flutter_ys7.git
+       ref: main
+    #path: ../
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

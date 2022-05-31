@@ -84,9 +84,11 @@ packages:
   flutter_ys7:
     dependency: "direct main"
     description:
-      path: ".."
-      relative: true
-    source: path
+      path: "."
+      ref: main
+      resolved-ref: c82106af0b9b2832b05104c04792b1e8fa2b6ca7
+      url: "https://github.com/rxwen/flutter_ys7.git"
+    source: git
     version: "0.2.7+1"
   http_parser:
     dependency: transitive
