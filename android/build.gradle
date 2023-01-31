@@ -41,7 +41,7 @@ android {
 }
 
 dependencies {
-    /*萤石SDK核心模块，必须依赖*/
+    implementation 'io.github.ezviz-open:ezviz-sdk:5.0.3'
     implementation 'io.github.ezviz-open:ezviz-sdk:4.19.8.1'
     implementation 'com.google.code.gson:gson:2.9.0'
     implementation 'org.jetbrains:annotations:16.0.2'
